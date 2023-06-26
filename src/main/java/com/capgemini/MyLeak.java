@@ -3,10 +3,7 @@ package com.capgemini;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
-import jakarta.ws.rs.core.MediaType;
-
 import java.lang.management.*;
 
 @Path("/")
@@ -32,6 +29,9 @@ public class MyLeak {
         }
 
         if (leakCpu) {
+            // blocking
+//            leakCpuService.leakCpu();
+            // non-blocking
             Thread cpuThread = new Thread(() -> leakCpuService.leakCpu());
             cpuThread.start();
         }
